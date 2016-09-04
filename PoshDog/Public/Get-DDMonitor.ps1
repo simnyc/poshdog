@@ -59,6 +59,7 @@ function Get-DDMonitor {
             HelpMessage="A Datadog Monitor ID",
             ParameterSetName="Get-DDMonitor:ByID"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias('Id')]
         [uint32]$MonitorId,
         

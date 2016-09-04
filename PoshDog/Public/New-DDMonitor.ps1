@@ -87,7 +87,7 @@ function New-DDMonitor {
         )]
         [ValidateSet("metric alert", "service check", "event alert")]
         [ValidateNotNullOrEmpty()]
-        [System.Object]$Type,
+        [String]$Type,
         
         [Parameter(
             Position=1,
