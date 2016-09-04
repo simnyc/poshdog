@@ -6,13 +6,6 @@ if($env:APPVEYOR_REPO_BRANCH -and $env:APPVEYOR_REPO_BRANCH -notlike "master")
 
 Import-Module $PSScriptRoot\..\PoshDog -Force
 
-<#
-$here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-. "$here\$sut"
-
-#>
-
 InModuleScope PoshDog {
     Describe "Running test for Set-DDConfiguration" {
         $testPath = "TestDrive:\test.txt"

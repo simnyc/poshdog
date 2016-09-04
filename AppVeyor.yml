@@ -1,0 +1,14 @@
+environment:
+  NuGetApiKey:
+    secure: l1hE4irHwZrjyFcOTpfGghSi6b0JD+dKiUFAMxZSl0k5Lr35XZmajw94bV2XXsHN
+  
+# Skip on updates to the readme.
+# We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
+skip_commits:
+  message: /updated readme.*|update readme.*s/
+
+build: false
+
+#Kick off the CI/CD pipeline
+test_script:
+  - ps: . .\build.ps1
