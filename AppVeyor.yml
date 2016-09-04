@@ -1,3 +1,6 @@
+# See http://www.appveyor.com/docs/appveyor-yml for many more options
+
+#Publish to PowerShell Gallery with this key
 environment:
   NuGetApiKey:
     secure: l1hE4irHwZrjyFcOTpfGghSi6b0JD+dKiUFAMxZSl0k5Lr35XZmajw94bV2XXsHN
