@@ -59,7 +59,9 @@ function Get-DDMonitor {
             HelpMessage="A Datadog Monitor ID",
             ParameterSetName="Get-DDMonitor:ByID"
         )]
-        [ValidateNotNullOrEmpty()]
+        # [int]$null is 0, so we can't use [ValidateNullOrEmpty]
+        [ValidateScript( {if ($_ -eq 0) {throw 'Cannot bind argument to parameter <<MonitorID>> because it is null or 0.'} else {return $True} } 
+        )]
         [Alias('Id')]
         [uint32]$MonitorId,
         
@@ -94,27 +96,29 @@ function Get-DDMonitor {
         [string[]]$Tags
     )
     process {
-
-        $Body = @{}
-
+        if ($GroupStates -or $Tags) {
+            $Body = @{}
+        }
+        
+        # GroupStates can be a member of both parameter sets
         if ($GroupStates){
             $Body.Add("group_states",($GroupStates -join ','))
         }
-        if ($Tags) {
-            $Body.Add("tags",($Tags -join ','))
+        
+        if ($PSCmdlet.ParameterSetName -eq "Get-DDMonitor:All") {
+            $Endpoint = '/monitor'
+            if ($Tags) {
+                $Body.Add("tags",($Tags -join ','))
+            }
+            # Build the default property set
+            $defaultDisplaySet = 'name','id','query'
         }
-
-        if ($PSCmdlet.ParameterSetName -eq "Get-DDMonitor:ByID") {
+        else {
+            # otherwise ($PSCmdlet.ParameterSetName -eq "Get-DDMonitor:ByID") {
             $Endpoint = "/monitor/$MonitorId"
             # Build the default property set
             $defaultDisplaySet = 'id', 'name', 'type', 'query', 'overall_state', 'message', 'options', 'created', 'creator'  
         }
-        elseif ($PSCmdlet.ParameterSetName -eq "Get-DDMonitor:All") {
-            $Endpoint = '/monitor'
-            # Build the default property set
-            $defaultDisplaySet = 'name','id','query'
-        }
-        
         $result = New-DDQuery -EndPoint $Endpoint -Method 'Get' -Body $Body -RequiresApplicationKey -ErrorAction Stop
         
         $defaultDisplayPropertySet = New-Object System.Management.Automation.PSPropertySet('DefaultDisplayPropertySet',[string[]]$defaultDisplaySet)

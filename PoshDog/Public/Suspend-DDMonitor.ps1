@@ -116,7 +116,7 @@ function Suspend-DDMonitor {
             ValueFromPipelineByPropertyName=$False,
             ValueFromRemainingArguments=$False,
             Mandatory=$False,
-            HelpMessage="A POSIX timestamp for when the mute should end",
+            HelpMessage="A Datetime object representing when the mute should end",
             ParameterSetName="Suspend-DDMonitor:IDAndDate"
         )]
         [DateTime]$EndDate
@@ -140,7 +140,6 @@ function Suspend-DDMonitor {
                 $Body.Add('end',$EndTimestamp)
             }
             elseif ($PSCmdlet.ParameterSetName -eq "Suspend-DDMonitor:IDAndTimestamp") { 
-                # ParameterSetName is Suspend-DDMonitor:IDAndTimestamp
                 $Body.Add('end',$EndTimestamp)
             }
             if ($Scope) {
