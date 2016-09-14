@@ -32,6 +32,8 @@ function Remove-DDMonitor {
             Mandatory=$True,
             HelpMessage="A Datadog Monitor ID"
         )]
+        # [int]$null is 0, so we can't use [ValidateNullOrEmpty]
+        [ValidateScript( {if ($_ -eq 0) {throw 'Cannot bind argument to parameter <<MonitorID>> because it is null or 0.'} else {return $True} } )]
         [Alias('Id')]
         [uint32]$MonitorId
     )
