@@ -198,6 +198,16 @@ myhost   Muted  Down for a short maintenance window
 
 ```
 
+## Aliases
+
+Powershell has a strict list of [approved verbs](https://msdn.microsoft.com/en-us/library/ms714428(v=vs.85).aspx) that one can use for functions and cmdlets.
+Not respecting this will show a bunch of warnings when importing the module. That's why some commands are named "Suspend" or "Resume", terms that are not part of Datadog's parlance.
+The good news is that a module can register a set of aliases for the commands it exports. To list all aliases available with Poshdog run:
+
+```
+Get-Alias | Where source -eq poshdog
+```
+
 ## Contribute
 
 Poshdog only covers a small portion of the API right now. If you'd like to help, simply [fork](https://help.github.com/articles/fork-a-repo/) the project and [submit](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) a Pull Request.
