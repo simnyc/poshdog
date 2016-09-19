@@ -16,7 +16,7 @@ function New-DDQuery {
 
     .PARAMETER Body
         An object used as body for the HTTP request.
-        If the request is a GET call, the vody must be a Powershell hashtable, taht ill get added to the query parameters.
+        If the request is a GET call, the body must be a Powershell hashtable, it will get added to the query parameters.
         If the request is NOT a GET, the body must be a JSON string.
 
     .PARAMETER RequiresApplicationKey
