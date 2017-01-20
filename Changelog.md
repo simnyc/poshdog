@@ -6,3 +6,4 @@ Changelog
 ## Changes
 
 * [NEW FEATURE] `New-DDSearch` commandlet to search for entities from the last 24 hours in Datadog.
+* Releases are now tagged in Github
