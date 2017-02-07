@@ -12,7 +12,7 @@ InModuleScope PoshDog {
         $env:dd_app_key = 'barfromenv'
         Context 'Parameter handling' {
             It "Throws if the Monitor ID is not an int" {      
-                {  Get-DDMonitor -MonitorID 'illegal value' } | Should Throw 'Input string was not in a correct format'
+                {  Get-DDMonitor -MonitorID 'illegal value' } | Should Throw
             }
              It 'Throws if the Monitor ID is null or 0' {      
                 {  Get-DDMonitor -MonitorID $null } | Should Throw 'it is null or 0'
