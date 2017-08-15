@@ -11,7 +11,7 @@ InModuleScope PoshDog {
         Mock New-DDQuery {}
         Context 'Parameter handling' {
             It "Throws if the Monitor ID is not an int" {      
-                {  Remove-DDMonitor -MonitorID 'illegal value' -Confirm:$False} | Should Throw 'Input string was not in a correct format'
+                {  Remove-DDMonitor -MonitorID 'illegal value' -Confirm:$False} | Should Throw
             }
             It "Throws if the Monitor ID is null or 0" {      
                 {  Remove-DDMonitor -MonitorID 0 -Confirm:$False} | Should Throw 
